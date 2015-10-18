@@ -11,7 +11,20 @@
 </pre>
 <emu-intro id=sec-intro>
   <h1>Introduction</h1>
-  <p>ES2015 arrow functions require an empty parameter list when you don't want any parameters, eg: `p.then(() => resolve())`. This proposal makes it syntactically valid to omit the empty parameter list, eg: `p.then(=> resolve())`. The [no |LineTerminator| here] restriction on |ArrowFunction| ensures there is no syntactic difficulties. Minor modifications are required to the grammar and a few abstract operations.</p>
+  <p>ES2015 arrow functions require an empty parameter list when you don't want any parameters, eg: `p.then(() => resolve())`. This proposal makes it syntactically valid to omit the empty parameter list, eg: `p.then(=> resolve())`. The [no |LineTerminator| here] restriction after the |ArrowParameters| of  |ArrowFunction| ensures there is no syntactic difficulty. Minor modifications are required to the grammar and a few abstract operations.</p>
+
+  <emu-intro id="sec-interaction-with-async-functions">
+    <h1>Interaction with Async Functions</h1>
+    <p>In the current async functions proposal, there is a syntactic form for async arrow functions:</p>
+    <pre><code>
+      async () => 1;
+    </code></pre>
+    <p>This might lead developers to try to use the following headless async arrow:</p>
+    <pre><code>
+      async => new Promise();
+    </code></pre>
+    <p>Unfortunately, this is a perfectly valid arrow function with one parameter named `async`. This may make this proposal untenable, or it might be a good reason to remove async arrows from the async functions proposal.</p>
+  </emu-intro>
 </emu-intro>
 <emu-clause id=sec-arrow-function-definitions>
   <h1>Arrow Function Definitions</h1>
